@@ -6,5 +6,6 @@ API_KEY = 'EK2VmDIMJeH1X-SRFrd6'
 
 HOST = 'https://fxmarketapi.com/'
 
-
 ENDPOINT_EXCHANGE_RATE = 'apilive'
+ENDPOINT_ALL_CURRENCIES = 'apicurrencies'
+ENDPOINT_CURRENCY_CONVERTER = "apiconvert"

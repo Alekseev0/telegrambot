@@ -1,7 +1,7 @@
 import pandas
 import requests
 from matplotlib import pyplot
-from constants import API_KEY, HOST, ENDPOINT_EXCHANGE_RATE
+from constants import API_KEY, HOST, ENDPOINT_EXCHANGE_RATE, ENDPOINT_ALL_CURRENCIES, ENDPOINT_CURRENCY_CONVERTER
 from db_queries import insert, update, select
 from datetime import datetime, timedelta, date
 import psycopg2
@@ -9,7 +9,7 @@ import psycopg2
 
 def get_all_currencies():
     """Request to get list of currencies"""
-    response = requests.get(f'{HOST}apicurrencies', params={'api_key': API_KEY})
+    response = requests.get(f'{HOST}{ENDPOINT_ALL_CURRENCIES}', params={'api_key': API_KEY})
     content = response.json()
     currencies = content.get('currencies', [])
     list_of_currencies = [currency for currency in currencies]
@@ -81,7 +81,7 @@ def exchange_currency(currency_to_exchange, amount):
     if 'USD' in currency_to_exchange:
         currency_to_exchange = currency_to_exchange.replace('USD', '')
 
-    response = requests.get(f'{HOST}{"apiconvert"}',
+    response = requests.get(f'{HOST}{ENDPOINT_CURRENCY_CONVERTER}',
                             params={'api_key': API_KEY,
                                     'from': 'USD',
                                     'to': currency_to_exchange,
