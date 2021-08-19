@@ -1,13 +1,15 @@
 import psycopg2
 
+from constants import DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_DATABASE
+
 
 def insert(records):
     try:
-        connection = psycopg2.connect(user="postgres",
-                                      password="postgres",
-                                      host="localhost",
-                                      port="5432",
-                                      database="chat_bot")
+        connection = psycopg2.connect(user=DB_USER,
+                                      password=DB_PASSWORD,
+                                      host=DB_HOST,
+                                      port=DB_PORT,
+                                      database=DB_DATABASE)
         cursor = connection.cursor()
 
         postgres_insert_query = "INSERT INTO currencies (exchange_rate, last_update, name) VALUES (%s,%s,%s)"
@@ -29,11 +31,11 @@ def insert(records):
 
 def update(records):
     try:
-        connection = psycopg2.connect(user="postgres",
-                                      password="postgres",
-                                      host="localhost",
-                                      port="5432",
-                                      database="chat_bot")
+        connection = psycopg2.connect(user=DB_USER,
+                                      password=DB_PASSWORD,
+                                      host=DB_HOST,
+                                      port=DB_PORT,
+                                      database=DB_DATABASE)
         cursor = connection.cursor()
 
         postgres_update_query = "UPDATE currencies SET exchange_rate = %s, last_update = %s WHERE name = %s"
@@ -56,11 +58,11 @@ def update(records):
 
 def select(*args):
     try:
-        connection = psycopg2.connect(user="postgres",
-                                      password="postgres",
-                                      host="localhost",
-                                      port="5432",
-                                      database='chat_bot')
+        connection = psycopg2.connect(user=DB_USER,
+                                      password=DB_PASSWORD,
+                                      host=DB_HOST,
+                                      port=DB_PORT,
+                                      database=DB_DATABASE)
 
         cursor = connection.cursor()
         try:
